@@ -108,3 +108,48 @@ function sortInPlace(arr){
 
 const simpleArr=[5,7,3,10,30,6];
 console.log(sortInPlace(simpleArr));
+
+//Sorting Books:
+//use merge sort and change letters to numbers by using charAt.
+//Since titles are always capitalized, the function should always work.
+//If, for some reason, there are titles with lowercase letters as the starting letter
+//the function would put them at the end of the array(still in alpabetical order
+//but coming after the capitals)
+
+let bookArr=['Bacon', 'Cheese', 'These Are Not Book Titles', 'Tape', 'Apples'];
+function bookSort(arr){
+  if(arr.length<=1){
+    return arr;
+  }
+  const middle=Math.floor(arr.length/2);
+  let left= arr.slice(0, middle);
+  let right=arr.slice(middle, arr.length);
+
+  left=bookSort(left);
+  right=bookSort(right);
+  return mergeBooks(left, right, arr);
+}
+
+function mergeBooks(left, right, arr){
+  let leftIndex=0;
+  let rightIndex=0;
+  let outputIndex=0;
+  while(leftIndex<left.length && rightIndex<right.length){
+    if(left[leftIndex].charCodeAt(0)<right[rightIndex].charCodeAt(0)){
+      arr[outputIndex++]=left[leftIndex++];
+    }
+    else{
+      arr[outputIndex++]=right[rightIndex++];
+    }
+  }
+
+  for(let i=leftIndex; i< left.length; i++){
+    arr[outputIndex++]=left[i];
+  }
+  for(let i=rightIndex; i<right.length; i++){
+    arr[outputIndex++]=right[i];
+  }
+  return arr;
+}
+
+console.log(bookSort(bookArr));

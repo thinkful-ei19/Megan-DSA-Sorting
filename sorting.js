@@ -34,8 +34,9 @@ function swap(array, i, j) {
   array[j] = tmp;
 }
 // console.log(qSort(arr));
-
+let mCount=0;
 function mSort(arr){
+  mCount++;
   if(arr.length<=1){
     return arr;
   }
@@ -69,4 +70,5 @@ function merge(left, right, arr){
   }
   return arr;
 }
-// console.log(mSort(arr));
+console.log(mSort(arr));
+console.log('mSort count:',mCount);

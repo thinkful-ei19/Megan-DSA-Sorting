@@ -89,5 +89,22 @@ function bucketSort(arr, lowest, highest){
   return finalArr;
   
 }
-//removes duplicates: extension should be see how to handle duplicates more efficiently
-console.log('bucket', bucketSort(arr, 1, 98));
+//Mentor Notes:removes duplicates: extension should be see how to handle duplicates more efficiently
+// console.log('bucket', bucketSort(arr, 1, 98));
+
+function sortInPlace(arr){
+  let max=arr.length-1;
+  let min=0;
+    
+  for(let i=0; i<arr.length; i++){
+    let randomIndex=Math.floor(Math.random() * (max - min + 1)) + min;
+    let temp=arr[i];
+    arr[i]=arr[randomIndex];
+    arr[randomIndex]=temp;
+  }
+
+  return arr;
+}
+
+const simpleArr=[5,7,3,10,30,6];
+console.log(sortInPlace(simpleArr));
